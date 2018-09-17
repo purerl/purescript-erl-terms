@@ -1,0 +1,14 @@
+{
+  "name": "purescript-erl-terms",
+  "set": "erl-0.12.0-20180912",
+  "source": "https://github.com/purerl/package-sets.git",
+  "depends": [
+    "assert",
+    "erl-atom",
+    "erl-binary",
+    "erl-lists",
+    "erl-maps",
+    "erl-tuples",
+    "prelude"
+  ]
+}
