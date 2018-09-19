@@ -1,15 +1,17 @@
--module(terms@foreign).
--export([unsafeToForeign/1, listToTuple/1, reflectImpl/11]).
+-module(erl_terms@foreign).
+-export([unsafeToForeign/1, listToTuple/1, reflectImpl/13]).
 
 unsafeToForeign(X) -> X.
 
 listToTuple(L) -> list_to_tuple(L).
 
-reflectImpl(Int,Float,Atom,Binary,List,Tuple,Map,Nothing,Just,ReflectList,E) ->
+reflectImpl(Int,Float,Atom,Binary,Pid,Reference,List,Tuple,Map,Nothing,Just,ReflectList,E) ->
     if
         is_integer(E) -> Just(Int(E));
         is_float(E) -> Just(Float(E));
         is_atom(E) -> Just(Atom(atom_to_binary(E, utf8)));
+        is_pid(E) -> Just(Pid(E));
+        is_reference(E) -> Just(Reference(E));
         is_list(E) -> (ReflectList(List))(E);
         is_tuple(E) -> 
             L = erlang:tuple_to_list(E),

@@ -9,7 +9,7 @@ import Erl.Atom (atom)
 import Erl.Data.List (nil, (:))
 import Erl.Data.Map as Map
 import Erl.Data.Tuple (tuple2)
-import Terms (Term(..), reflect, reify, unsafeToForeign)
+import Erl.Terms (NativeTerm, Term(..), reflect, reify)
 import Test.Assert (assert, assert')
 
 -- Property tests would be nice here
@@ -17,6 +17,7 @@ import Test.Assert (assert, assert')
 -- Raw =:=
 foreign import foreignEq :: forall a b. a -> b -> Boolean
 
+foreign import unsafeToForeign :: forall a. a -> NativeTerm
 
 main :: Effect Unit
 main = do
